@@ -28,9 +28,37 @@ clientsControl.post = async (req, res) => {
   try {
     const { name, email, password, phone, age } = req.body;
 
+  
+    if (!name || !email || !password || !phone || !age) {
+      return res.status(400).json({ message: "Todos los campos son obligatorios" });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Formato de correo electrónico inválido" });
+    }
+
+    const phoneRegex = /^\d{8}$/;
+    if (!phoneRegex.test(phone)) {
+      return res.status(400).json({ message: "Formato de teléfono inválido (8 dígitos)" });
+    }
+
+    if (typeof age !== "number" || age < 18) {
+      return res.status(400).json({ message: "Edad inválida" });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ message: "La contraseña debe tener al menos 8 caracteres" });
+    }
+
+    let existingClient = await clientsModel.findOne({ email });
+    if (existingClient) {
+      return res.status(400).json({ message: "El usuario ya existe" });
+    }
+
     const passwordHash = await bcryptjs.hash(password, 10);
 
-    const newClients = await clientsModel({
+    const newClients = new clientsModel({
       name,
       email,
       password: passwordHash,
@@ -41,7 +69,7 @@ clientsControl.post = async (req, res) => {
     await newClients.save();
 
     console.log(newClients);
-    res.status(200).json({ message: "Cliente Agregado correctamente" });
+    res.status(200).json({ message: "Cliente agregado correctamente" });
   } catch (error) {
     res.status(500).json({ message: "Error al ingresar datos: " + error });
   }
@@ -50,6 +78,29 @@ clientsControl.post = async (req, res) => {
 clientsControl.put = async (req, res) => {
   try {
     const { name, email, password, phone, age } = req.body;
+
+  
+    if (!name || !email || !password || !phone || !age) {
+      return res.status(400).json({ message: "Todos los campos son obligatorios" });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Formato de correo electrónico inválido" });
+    }
+
+    const phoneRegex = /^\d{8}$/;
+    if (!phoneRegex.test(phone)) {
+      return res.status(400).json({ message: "Formato de teléfono inválido (8 dígitos)" });
+    }
+
+    if (typeof age !== "number" || age < 0) {
+      return res.status(400).json({ message: "Edad inválida" });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ message: "La contraseña debe tener al menos 8 caracteres" });
+    }
 
     const passwordHash = await bcryptjs.hash(password, 10);
 
@@ -61,13 +112,12 @@ clientsControl.put = async (req, res) => {
 
     console.log(updateClients);
 
-    res.status(200).json({ message: "Cliente Actualizado correctamente" });
+    res.status(200).json({ message: "Cliente actualizado correctamente" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al actualizar los datos: " + error });
+    res.status(500).json({ message: "Error al actualizar los datos: " + error });
   }
 };
+
 
 clientsControl.delete = async (req, res) => {
   try {
