@@ -1,0 +1,356 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/luxusfahrten/FaseValoracion/1.0.0"
+  } ],
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "home-iot-api",
+    "description" : "The API for the EatBacon IOT project"
+  },
+  "paths" : {
+    "/Clients" : {
+      "get" : {
+        "summary" : "Get Clients",
+        "tags" : [ "ClientsById" ],
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        },
+        "operationId" : "get-Clients",
+        "description" : "Accion para ver los clientes"
+      },
+      "post" : {
+        "summary" : "Post Clients",
+        "tags" : [ "ClientsById" ],
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "502" : {
+            "description" : "Bad Gateway"
+          }
+        },
+        "operationId" : "post-Clients",
+        "description" : "Accion para ingresar los clientes, se necesita ingresar los datos con sus respectivos requisitos",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Clients"
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Put Clients",
+        "tags" : [ "ClientsById" ],
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "502" : {
+            "description" : "Bad Gateway"
+          }
+        },
+        "operationId" : "put-Clients",
+        "description" : "Accion para actualizar los clientes",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "Id",
+          "description" : "el id del que se quiere actualizar",
+          "required" : true
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Clients"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete Clients",
+        "tags" : [ "ClientsById" ],
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        },
+        "operationId" : "delete-Clients",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "Id",
+          "description" : "se necesita el id del usuario a eliminar",
+          "required" : true
+        } ]
+      }
+    },
+    "/ClientsById" : {
+      "get" : {
+        "summary" : "Get Clients by Id",
+        "tags" : [ "Clients" ],
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        },
+        "operationId" : "get-ClientsById",
+        "description" : "Este es para la busqueda de usuarios usando el id",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "Id",
+          "description" : "necesario para ver el usuario especifico"
+        } ]
+      }
+    },
+    "/Booking" : {
+      "get" : {
+        "summary" : "Get Booking",
+        "tags" : [ "Booking" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "502" : {
+            "description" : "Bad Gateway"
+          }
+        },
+        "operationId" : "get-Booking",
+        "description" : "Es para acceder a las reservas"
+      },
+      "post" : {
+        "summary" : "Post Booking",
+        "tags" : [ "Booking" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "202" : {
+            "description" : "Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          },
+          "4XX" : {
+            "description" : "Client Error"
+          }
+        },
+        "operationId" : "post-Booking",
+        "description" : "Esto es para agregar una nueva reserva",
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Booking"
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Put Booking",
+        "tags" : [ "Booking" ],
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          },
+          "4XX" : {
+            "description" : "Client Error"
+          }
+        },
+        "operationId" : "put-Booking",
+        "description" : "Esto es para actualizar las reservas",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "Id",
+          "description" : "Este id es necesario para actualizar las reservas"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Booking"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete Booking",
+        "tags" : [ "Booking" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "502" : {
+            "description" : "Bad Gateway"
+          }
+        },
+        "operationId" : "delete-Booking",
+        "description" : "Esto es para eliminar las reservas",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "Id",
+          "description" : "Este es necesario para eliminar la reserva"
+        } ]
+      }
+    },
+    "/BookingById" : {
+      "get" : {
+        "summary" : "Get Booking by Id",
+        "tags" : [ "Booking" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        },
+        "operationId" : "get-BookingById",
+        "description" : "Este es para ver una reserva especifica",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "Id",
+          "description" : "Este es necesario para ver la reserva especifica",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Clients" : {
+        "title" : "Clients",
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "fsg0v18wkwmgx"
+            }
+          },
+          "email" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "6xt37i39frg06"
+            }
+          },
+          "password" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "5xrntpw9cmmwm"
+            }
+          },
+          "phone" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "vcavwupuavjbc"
+            }
+          },
+          "age" : {
+            "type" : "number",
+            "x-stoplight" : {
+              "id" : "qx8s5n7hpccnf"
+            }
+          }
+        }
+      },
+      "Booking" : {
+        "title" : "Booking",
+        "type" : "object",
+        "properties" : {
+          "clientId" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "cza0nvtv3bw3j"
+            },
+            "format" : "id"
+          },
+          "vehicle" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "yckdhy9bvs4v7"
+            }
+          },
+          "service" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "g8flixf1xbf0n"
+            }
+          },
+          "status" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "d7e5ioxveiomg"
+            }
+          }
+        }
+      }
+    }
+  }
+}
