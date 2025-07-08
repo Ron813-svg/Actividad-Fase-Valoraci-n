@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const swaggerDocument = JSON.parse(
-  fs.readFileSync(path.resolve("./documentacion.json"), "utf-8")
+  fs.readFileSync(path.resolve("./Documentacion.json"), "utf-8")
 );
 
 app.use("/api/clients", clientsRoute);
