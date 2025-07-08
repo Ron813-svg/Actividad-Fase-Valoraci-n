@@ -6,7 +6,7 @@ const router = express.Router()
 router.route('/').get(bookingControl.get)
 router.route('/').post(bookingControl.post)
 
-router.route('/:id').get(bookingControl.get)
+router.route('/:id').get(bookingControl.getById)
 router.route('/:id').put(bookingControl.put)
 router.route('/:id').delete(bookingControl.delete)
 
