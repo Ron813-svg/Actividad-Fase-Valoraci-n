@@ -18,9 +18,6 @@ const bookingSchema = ({
         type:String,
         required: true
     }
-}, {
-    timestamps: true,
-    strict: false
 })
 
 export default model('Booking', bookingSchema)
