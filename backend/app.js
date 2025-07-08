@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 import clientsRoute from './src/routes/clients.js'
 
 const app = express()
-app.use(express.json)
+app.use(express.json())
 app.use(cookieParser())
 app.use('/api/clients', clientsRoute)
 

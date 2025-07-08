@@ -7,7 +7,8 @@ clientsControl.get = async (req, res) => {
   try {
     const clients = await clientsModel.find();
     console.log(clients);
-    res.status(200).json({ message: "Datos obtenidos" });
+    
+    res.json(clients)
   } catch (error) {
     res.status(500).json({ message: "Error al obtener datos: " + error });
   }
@@ -17,7 +18,7 @@ clientsControl.getById = async (req, res) => {
   try {
     const clientsId = await clientsModel.findById(req.params.id);
     console.log(clientsId);
-    res.status(200).json({ message: "Datos obtenidos" });
+    res.json(clientsId)
   } catch (error) {
     res.status(500).json({ message: "Error al obtener datos: " + error });
   }
